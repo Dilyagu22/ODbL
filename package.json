@@ -1,0 +1,13 @@
+{
+  "name": "luach-tz-patch",
+  "version": "1.0.0",
+  "description": "A high-resolution coordinate-to-timezone grid for Israel and its neighbours, derived from OpenStreetMap. ODbL.",
+  "license": "ODbL-1.0",
+  "type": "module",
+  "scripts": {
+    "generate": "node gen-tz-patch.mjs"
+  },
+  "devDependencies": {
+    "geo-tz": "^8.1.8"
+  }
+}
