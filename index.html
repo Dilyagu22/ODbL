@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Time zone boundaries — open data used by Luach Or</title>
+<style>
+  /* THE APP'S OWN HAVDALAH SKY, as a page.
+     Self-contained on purpose: no fonts, scripts or images are fetched, which
+     is the same promise this page makes about the app. The stars and the sky
+     are CSS gradients, not assets.
+
+     The stops are Sky.gradient's, copied from the app: night at the top
+     through to the gold horizon at the foot. That gold is why every block of
+     text sits on a translucent DARK card — cream on the bare lower sky would
+     be unreadable, which is the same reason the app gives its cards an
+     opacity on this theme and no other. */
+  :root {
+    --sky0: #0E1630;  --sky1: #16233F;  --sky2: #4A3A57;
+    --sky3: #B4763F;  --sky4: #E0A961;
+    --cream: #F5EFE3; --gold: #E8B563;
+    --ink:  #F5EFE3;  --ink2: #C9D0DE;  --ink3: #98A2B6;
+    --card: rgba(14, 22, 48, .90);
+    --line: rgba(232, 181, 99, .22);
+    /* The heading grade: nine steps walking the same sky the background does,
+       cool starlight at the top to gold at the horizon. */
+    --g1:#A9C4E8; --g2:#B6BEE2; --g3:#C3B8DA; --g4:#D0B2CE; --g5:#DDB0B4;
+    --g6:#E6B48F; --g7:#E8B563; --g8:#EFC77E; --g9:#F3D79B;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    padding: 2.5rem 1.25rem 4rem;
+    color: var(--ink2);
+    font: 17px/1.7 ui-serif, Georgia, "Times New Roman", serif;
+    -webkit-text-size-adjust: 100%;
+    background:
+      radial-gradient(1.4px 1.4px at 12% 6%,  rgba(255,255,255,.55), transparent),
+      radial-gradient(1.6px 1.6px at 78% 4%,  rgba(255,255,255,.45), transparent),
+      radial-gradient(1.2px 1.2px at 34% 11%, rgba(255,255,255,.40), transparent),
+      radial-gradient(1.5px 1.5px at 62% 14%, rgba(255,255,255,.35), transparent),
+      radial-gradient(1.3px 1.3px at 88% 18%, rgba(255,255,255,.30), transparent),
+      radial-gradient(1.2px 1.2px at 22% 21%, rgba(255,255,255,.28), transparent),
+      linear-gradient(180deg,
+        var(--sky0) 0%, var(--sky1) 30%, var(--sky2) 62%,
+        var(--sky3) 84%, var(--sky4) 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+  main { max-width: 44rem; margin: 0 auto; }
+
+  header { text-align: center; margin-bottom: 2rem; }
+  h1 {
+    color: var(--cream); font-size: 2.4rem; margin: 0 0 .5rem;
+    letter-spacing: -.01em; font-weight: 700;
+    text-shadow: 0 2px 24px rgba(0,0,0,.45);
+  }
+  .sub { color: var(--gold); font-size: .95rem; letter-spacing: .02em; }
+
+  /* Findability: every section is reachable from the top in one tap. */
+  nav {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 16px; padding: 1.1rem 1.3rem; margin-bottom: 2rem;
+    box-shadow: 0 10px 34px rgba(0,0,0,.35);
+  }
+  nav p {
+    margin: 0 0 .7rem; color: var(--gold);
+    font-size: .78rem; letter-spacing: .12em; text-transform: uppercase;
+    font-family: system-ui, -apple-system, sans-serif; font-weight: 600;
+  }
+  nav ol { margin: 0; padding: 0; list-style: none;
+           display: grid; gap: .35rem .9rem; grid-template-columns: 1fr; }
+  @media (min-width: 34rem) { nav ol { grid-template-columns: 1fr 1fr; } }
+  nav a {
+    color: var(--ink); text-decoration: none; font-size: .95rem;
+    display: block; padding: .2rem 0; border-bottom: 1px solid transparent;
+  }
+  nav a:hover { color: var(--gold); border-bottom-color: var(--line); }
+
+  section {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 16px; padding: 1.4rem 1.5rem; margin-bottom: 1.1rem;
+    box-shadow: 0 10px 34px rgba(0,0,0,.32);
+    scroll-margin-top: 1rem;
+  }
+  section h2 {
+    font-size: 1.3rem; margin: 0 0 .8rem; letter-spacing: -.005em;
+    font-weight: 700;
+  }
+  section:nth-of-type(1) h2 { color: var(--g1); }
+  section:nth-of-type(2) h2 { color: var(--g2); }
+  section:nth-of-type(3) h2 { color: var(--g3); }
+  section:nth-of-type(4) h2 { color: var(--g4); }
+  section:nth-of-type(5) h2 { color: var(--g5); }
+  section:nth-of-type(6) h2 { color: var(--g6); }
+  section:nth-of-type(7) h2 { color: var(--g7); }
+  section:nth-of-type(8) h2 { color: var(--g8); }
+  section:nth-of-type(9) h2 { color: var(--g9); }
+  section:nth-of-type(n+10) h2 { color: var(--g9); }
+
+  h3 {
+    color: var(--cream); font-size: 1rem; font-weight: 600;
+    margin: 1.5rem 0 .5rem; font-family: system-ui, -apple-system, sans-serif;
+    letter-spacing: .01em;
+  }
+  h3:first-of-type { margin-top: 1rem; }
+  p { margin: 0 0 1rem; }
+  p:last-child { margin-bottom: 0; }
+  ul { margin: 0 0 1rem; padding-left: 1.15rem; }
+  li { margin-bottom: .5rem; }
+  li::marker { color: var(--gold); }
+  strong { color: var(--cream); font-weight: 600; }
+  a { color: var(--gold); }
+
+  .lede {
+    background: linear-gradient(180deg, rgba(232,181,99,.10), rgba(232,181,99,.03));
+    border: 1px solid rgba(232,181,99,.34);
+    border-radius: 16px; padding: 1.3rem 1.45rem; margin-bottom: 1.6rem;
+    color: var(--ink); box-shadow: 0 10px 34px rgba(0,0,0,.30);
+  }
+  .lede p:last-child { margin-bottom: 0; }
+
+  /* The footer needs its own plate for the same reason the sections do: it
+     lands on the GOLD end of the sky, where grey ink measured unreadable.
+     This is the app's own skyPlate rule — text on the page, not on a card,
+     has to bring its own ground. */
+  footer {
+    margin-top: 1.6rem; padding: 1.1rem 1.3rem;
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 16px;
+    color: var(--ink2); font-size: .9rem; text-align: center;
+    box-shadow: 0 10px 34px rgba(0,0,0,.32);
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Time zone boundaries</h1>
+    <div class="sub">Open data used by Luach Or &middot; published under the ODbL</div>
+  </header>
+
+  <div class="lede">
+    <p><strong>Luach Or works out which clock a coordinate belongs to using a
+    small database derived from OpenStreetMap.</strong> The ODbL asks that the
+    derived database be offered to anyone who receives the app. This page is
+    that offer &mdash; everything is below, and you may take it and use it under
+    the same licence.</p>
+  </div>
+
+  <nav aria-label="On this page">
+    <p>On this page</p>
+    <ol>
+      <li><a href="#download">Download the data</a></li>
+      <li><a href="#what">What it is</a></li>
+      <li><a href="#why">Why it exists</a></li>
+      <li><a href="#source">Where it came from</a></li>
+      <li><a href="#licence">Licence and attribution</a></li>
+      <li><a href="#app">The app</a></li>
+    </ol>
+  </nav>
+
+  <section id="download">
+    <h2>Download the data</h2>
+    <p>The database, in machine-readable form:</p>
+    <ul>
+      <li><a href="https://raw.githubusercontent.com/Dilyagu22/ODbL/main/tz-patch.json"><strong>tz-patch.json</strong></a>
+      &mdash; the database itself, 35&nbsp;KB.</li>
+      <li><a href="https://raw.githubusercontent.com/Dilyagu22/ODbL/main/tz-patch.ts"><strong>tz-patch.ts</strong></a>
+      &mdash; the same data with a small lookup function, which is the form the
+      app uses.</li>
+      <li><a href="https://raw.githubusercontent.com/Dilyagu22/ODbL/main/gen-tz-patch.mjs"><strong>gen-tz-patch.mjs</strong></a>
+      &mdash; the generator, so you can rebuild it from the source yourself
+      rather than trusting this copy.</li>
+    </ul>
+    <p>All of it, with its history, is at
+    <a href="https://github.com/Dilyagu22/ODbL">github.com/Dilyagu22/ODbL</a>.</p>
+  </section>
+
+  <section id="what">
+    <h2>What it is</h2>
+    <p>A grid that answers one question: given a latitude and longitude, which
+    time zone is it in? Every figure below is read from the file itself.</p>
+    <ul>
+      <li><strong>Window</strong> &mdash; latitude 29.0 to 33.5, longitude 34.0
+      to 36.0. Israel and its immediate neighbours.</li>
+      <li><strong>Grid</strong> &mdash; 1800 &times; 800, which is 1,440,000
+      cells.</li>
+      <li><strong>Resolution</strong> &mdash; 0.0025&deg;. A cell is about 278 m
+      of latitude, so a border is placed to within roughly 139 m.</li>
+      <li><strong>Zones</strong> &mdash; Africa/Cairo, Asia/Riyadh, Asia/Amman,
+      Asia/Jerusalem, Asia/Gaza, Asia/Hebron, Etc/GMT-2, Asia/Damascus,
+      Asia/Beirut.</li>
+      <li><strong>Size</strong> &mdash; 35,532 bytes as JSON.</li>
+    </ul>
+  </section>
+
+  <section id="why">
+    <h2>Why it exists</h2>
+    <p>General-purpose packed time zone rasters have little resolution in the
+    Gulf of Aqaba corner, and hand <code>Asia/Amman</code> to everything below
+    about latitude 30. That includes Eilat, Yotvata, Ketura, Samar and Ovda.</p>
+    <p>It matters because Jordan stopped observing daylight saving in 2022 and
+    Israel did not. An app using the coarse data would have told someone in
+    Eilat to light Shabbat candles at 17:44 when the correct time is 16:44
+    &mdash; forty minutes <em>after</em> sunset. This grid is the fix, and no
+    border in it was drawn by hand.</p>
+  </section>
+
+  <section id="source">
+    <h2>Where it came from</h2>
+    <p>Extracted from
+    <a href="https://github.com/evansiroky/timezone-boundary-builder">timezone-boundary-builder</a>,
+    whose boundaries are built from OpenStreetMap and whose own README licenses
+    its output under the ODbL.</p>
+    <p>The npm package that packs that data declares CC0, and that declaration
+    covers its <em>code</em>. The boundaries themselves remain OpenStreetMap&rsquo;s
+    and remain under the ODbL, which is why this page exists.</p>
+  </section>
+
+  <section id="licence">
+    <h2>Licence and attribution</h2>
+    <p><strong>Contains information from OpenStreetMap</strong>, which is made
+    available under the
+    <a href="https://opendatacommons.org/licenses/odbl/1-0/">Open Database
+    License (ODbL) v1.0</a>. &copy; OpenStreetMap contributors.</p>
+    <p>This derived database is offered under the same licence. Any rights in
+    the individual contents are under the
+    <a href="https://opendatacommons.org/licenses/dbcl/1-0/">Database Contents
+    License (DbCL) v1.0</a>.</p>
+    <p>You may copy, distribute, adapt and build on it, including commercially,
+    provided you attribute OpenStreetMap and share any adapted database under
+    the ODbL in turn.</p>
+  </section>
+
+  <section id="app">
+    <h2>The app</h2>
+    <p>Luach Or is a Jewish calendar, zmanim and blessings reference for iPhone.
+    It uses this data to know which clock your city keeps.</p>
+    <p><a href="https://dilyagu22.github.io/LuachSupport/">Support</a> &middot;
+    <a href="https://dilyagu22.github.io/LuachPrivacy/">Privacy policy</a></p>
+  </section>
+
+  <footer>
+    Published so the ODbL&rsquo;s share-alike term is satisfied plainly rather
+    than by argument. This page is served as a static file and sets no cookies.
+  </footer>
+</main>
+</body>
+</html>
