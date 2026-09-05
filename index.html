@@ -260,12 +260,12 @@
      The app's own segmented picker: a `sunken` track with the current segment
      filled `gold` and its label in `onGold`.
 
-     It appears TWICE. The top copy is a <nav> above the <h1> and outside
-     <main>, because it answers "which of the three documents am I in", and a
-     reader who landed on the wrong one should learn that before reading nine
-     unrelated section names. The foot copy is a plain <div>, NOT a second
-     <nav>: two navigation landmarks with the same accessible name is a rotor
-     full of indistinguishable entries.
+     ONE copy, at the top, and that is his ruling of 2026-09-04: "the top
+     selection bar is the way how to navigate through 3 pages. No repetitions."
+     It was built with a second copy in the footer and a third link in the
+     support page's own prose; all of those are gone. A reader who landed on
+     the wrong document learns it before reading a single section name, and
+     learns it in exactly one place.
 
      The order Privacy · Support · ODbL never changes, and the three columns are
      equal, so the pills sit in the same three places on all three pages — a
@@ -307,7 +307,6 @@
      pill left gold. That is live on the deployed pages today. */
   @media (hover: hover) { .pages a:hover { background: rgba(var(--ink-ch), .09); color: var(--gold); } }
   .pages a:active { background: rgba(var(--ink-ch), .09); color: var(--gold); }
-  footer .pages { margin: 0; }
 
   /* ── HEADER ───────────────────────────────────────────────────────────────
      The h1 and the date line are the only text on these pages not on a card,
@@ -366,7 +365,6 @@
     font-size: .9rem; color: var(--ink);
   }
   footer p { margin: 0; }
-  footer .pages + p { margin: .95rem 0 0; }
 
   /* The lede keeps the app's washed card, and the wash is FLAT at
      Palette.goldWashTop (0.04) rather than the app's 0.04 -> 0.18 ramp: the
@@ -622,16 +620,11 @@
     <h2>The app</h2>
     <p>Luach Or is a Jewish calendar, zmanim and blessings reference for iPhone.
     It uses this data to know which clock your city keeps.</p>
-    <p>Its support page and its privacy policy are linked at the top and foot
+    <p>Its support page and its privacy policy open from the bar at the top
     of this page.</p>
   </section>
 
   <footer>
-  <div class="pages">
-    <a href="https://dilyagu22.github.io/LuachPrivacy/">Privacy</a>
-    <a href="https://dilyagu22.github.io/LuachSupport/">Support</a>
-    <span class="here" aria-current="page">ODbL</span>
-  </div>
   <p>Published so the ODbL&rsquo;s share-alike term is satisfied plainly rather than by argument. This page is served as a static file and sets no cookies.</p>
 </footer>
 </main>
